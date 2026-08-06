@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rithik Theddu — AI Engineer</title>
+<meta name="description" content="AI Engineer at Capco. Production RAG systems, agent pipelines, and the data infrastructure underneath them for financial services.">
+<meta property="og:title" content="Rithik Theddu — AI Engineer">
+<meta property="og:description" content="Production RAG systems, agent pipelines, and data infrastructure for financial services.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230b0f19'/><text y='68' x='50' text-anchor='middle' font-size='54' font-family='monospace' fill='%235eead4'>R</text></svg>">
+<style>
+:root{
+  --bg:#0a0e17; --bg-2:#0f1420; --card:#121828; --line:#1e2740;
+  --fg:#e8ecf4; --fg-2:#9aa6bf; --fg-3:#67728c;
+  --accent:#5eead4; --accent-2:#7dd3fc; --warm:#fbbf24;
+  --radius:14px; --max:1080px;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+}
+:root[data-theme="light"]{
+  --bg:#fbfcfe; --bg-2:#f3f6fb; --card:#ffffff; --line:#e3e9f2;
+  --fg:#0e1626; --fg-2:#4a5871; --fg-3:#75839d;
+  --accent:#0d9488; --accent-2:#0369a1; --warm:#b45309;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--fg); font-family:var(--sans);
+  line-height:1.65; -webkit-font-smoothing:antialiased;
+  transition:background .25s ease,color .25s ease;
+}
+a{color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+/* ---------- nav ---------- */
+nav{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--bg) 82%,transparent);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
+}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-family:var(--mono);font-weight:600;font-size:.95rem;letter-spacing:-.01em;text-decoration:none}
+.brand span{color:var(--accent)}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{
+  text-decoration:none;font-size:.875rem;color:var(--fg-2);
+  transition:color .18s;position:relative;
+}
+.nav-links a:hover{color:var(--fg)}
+.theme-btn{
+  background:none;border:1px solid var(--line);color:var(--fg-2);
+  width:34px;height:34px;border-radius:9px;cursor:pointer;font-size:.95rem;
+  display:grid;place-items:center;transition:all .18s;
+}
+.theme-btn:hover{border-color:var(--accent);color:var(--accent)}
+@media(max-width:680px){.nav-links a:not(.nav-cta){display:none}}
+
+/* ---------- hero ---------- */
+header{padding:88px 0 72px;position:relative;overflow:hidden}
+header::before{
+  content:"";position:absolute;top:-180px;left:50%;transform:translateX(-50%);
+  width:760px;height:420px;pointer-events:none;
+  background:radial-gradient(ellipse at center,color-mix(in srgb,var(--accent) 12%,transparent),transparent 70%);
+  filter:blur(50px);
+}
+.hero{position:relative}
+.status{
+  display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);
+  font-size:.75rem;color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 32%,transparent);
+  background:color-mix(in srgb,var(--accent) 8%,transparent);
+  padding:5px 12px;border-radius:100px;margin-bottom:22px;
+}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+h1{
+  font-size:clamp(2.4rem,6vw,3.9rem);line-height:1.06;letter-spacing:-.035em;
+  font-weight:700;margin-bottom:18px;
+}
+.tagline{
+  font-size:clamp(1.05rem,2.2vw,1.3rem);color:var(--fg-2);
+  max-width:660px;margin-bottom:14px;line-height:1.55;
+}
+.tagline b{color:var(--fg);font-weight:600}
+.meta{
+  font-family:var(--mono);font-size:.8rem;color:var(--fg-3);
+  margin-bottom:30px;display:flex;flex-wrap:wrap;gap:6px 14px;
+}
+.cta{display:flex;flex-wrap:wrap;gap:11px}
+.btn{
+  display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+  padding:10px 18px;border-radius:9px;font-size:.885rem;font-weight:500;
+  border:1px solid var(--line);color:var(--fg-2);
+  transition:all .18s ease;
+}
+.btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+.btn-primary{
+  background:var(--accent);border-color:var(--accent);
+  color:var(--bg);font-weight:600;
+}
+:root[data-theme="light"] .btn-primary{color:#fff}
+.btn-primary:hover{
+  color:var(--bg);transform:translateY(-1px);
+  box-shadow:0 8px 22px -8px color-mix(in srgb,var(--accent) 60%,transparent);
+}
+:root[data-theme="light"] .btn-primary:hover{color:#fff}
+
+/* ---------- sections ---------- */
+section{padding:64px 0;border-top:1px solid var(--line)}
+.sec-head{margin-bottom:36px}
+.sec-num{font-family:var(--mono);font-size:.75rem;color:var(--accent);letter-spacing:.06em}
+h2{font-size:1.6rem;letter-spacing:-.025em;font-weight:650;margin-top:4px}
+.sec-sub{color:var(--fg-3);font-size:.92rem;margin-top:7px;max-width:620px}
+
+/* ---------- now ---------- */
+.now-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.now-card{
+  background:var(--card);border:1px solid var(--line);
+  border-radius:var(--radius);padding:22px;
+  transition:border-color .2s;
+}
+.now-card:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
+.now-card h3{
+  font-size:.83rem;font-family:var(--mono);color:var(--accent);
+  font-weight:600;margin-bottom:9px;letter-spacing:.01em;
+}
+.now-card p{font-size:.9rem;color:var(--fg-2);line-height:1.62}
+
+/* ---------- projects ---------- */
+.proj{display:grid;gap:16px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px 26px;transition:border-color .2s,transform .2s;position:relative;
+}
+.card:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));transform:translateY(-2px)}
+.card-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin-bottom:5px}
+.card h3{font-size:1.12rem;letter-spacing:-.018em;font-weight:650}
+.card h3 a{text-decoration:none;transition:color .18s}
+.card h3 a:hover{color:var(--accent)}
+.flag{
+  font-family:var(--mono);font-size:.66rem;text-transform:uppercase;
+  letter-spacing:.08em;color:var(--warm);
+  border:1px solid color-mix(in srgb,var(--warm) 34%,transparent);
+  background:color-mix(in srgb,var(--warm) 9%,transparent);
+  padding:2px 8px;border-radius:5px;
+}
+.card .what{color:var(--fg-2);font-size:.94rem;margin-bottom:13px}
+.card .why{
+  font-size:.885rem;color:var(--fg-2);line-height:1.66;
+  border-left:2px solid color-mix(in srgb,var(--accent) 38%,transparent);
+  padding-left:14px;margin-bottom:15px;
+}
+.card .why b{color:var(--fg);font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.tag{
+  font-family:var(--mono);font-size:.71rem;color:var(--fg-3);
+  border:1px solid var(--line);border-radius:5px;padding:2px 8px;
+  background:var(--bg-2);
+}
+.links{margin-left:auto;display:flex;gap:14px}
+.links a{
+  font-size:.8rem;text-decoration:none;color:var(--accent);
+  font-family:var(--mono);transition:opacity .18s;
+}
+.links a:hover{opacity:.72}
+
+/* ---------- experience ---------- */
+.xp{position:relative;padding-left:26px}
+.xp::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:1px;background:var(--line)}
+.job{position:relative;padding-bottom:30px}
+.job:last-child{padding-bottom:0}
+.job::before{
+  content:"";position:absolute;left:-24px;top:8px;width:9px;height:9px;
+  border-radius:50%;background:var(--bg);border:2px solid var(--line);
+}
+.job.current::before{border-color:var(--accent);background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 16%,transparent)}
+.job-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:9px}
+.job h3{font-size:1rem;font-weight:640}
+.job .co{color:var(--accent);font-weight:600}
+.job .when{font-family:var(--mono);font-size:.75rem;color:var(--fg-3);margin-left:auto}
+.job p{font-size:.89rem;color:var(--fg-2);margin-top:6px;max-width:760px}
+.job .stack{font-family:var(--mono);font-size:.73rem;color:var(--fg-3);margin-top:7px}
+
+/* ---------- skills ---------- */
+.sk{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.sk-g{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.sk-g h3{
+  font-family:var(--mono);font-size:.74rem;color:var(--accent);
+  text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;font-weight:600;
+}
+.sk-g p{font-size:.87rem;color:var(--fg-2);line-height:1.72}
+
+/* ---------- edu ---------- */
+.edu{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.edu-c{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px}
+.edu-c h3{font-size:.98rem;font-weight:640;margin-bottom:3px}
+.edu-c .school{color:var(--accent);font-size:.89rem;font-weight:550}
+.edu-c .det{font-family:var(--mono);font-size:.75rem;color:var(--fg-3);margin-top:6px}
+
+/* ---------- contact ---------- */
+.contact{text-align:center;padding:76px 0}
+.contact h2{font-size:clamp(1.7rem,4vw,2.3rem);margin-bottom:12px}
+.contact p{color:var(--fg-2);max-width:520px;margin:0 auto 28px;font-size:1rem}
+.contact .cta{justify-content:center}
+footer{
+  border-top:1px solid var(--line);padding:26px 0;
+  font-family:var(--mono);font-size:.75rem;color:var(--fg-3);
+  display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;
+}
+footer a{color:var(--fg-3);text-decoration:none}
+footer a:hover{color:var(--accent)}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  .dot{animation:none}
+  html{scroll-behavior:auto}
+}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a href="#top" class="brand">rithik<span>.</span>theddu</a>
+    <div class="nav-links">
+      <a href="#now">Now</a>
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+      <button class="theme-btn" id="theme" aria-label="Toggle color theme" title="Toggle theme">◐</button>
+    </div>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="wrap hero">
+    <div class="status"><span class="dot"></span>Open to AI/ML engineering roles</div>
+    <h1>Rithik Theddu</h1>
+    <p class="tagline">
+      <b>AI Engineer at Capco.</b> I build production RAG systems and agent pipelines
+      for financial services — and the data infrastructure underneath them.
+    </p>
+    <div class="meta">
+      <span>Maitland, FL</span><span>·</span>
+      <span>H-1B</span><span>·</span>
+      <span>MS Computer Science, George Mason</span><span>·</span>
+      <span>5+ years</span>
+    </div>
+    <div class="cta">
+      <a class="btn btn-primary" href="mailto:rithiksunny1999@gmail.com">Get in touch</a>
+      <a class="btn" href="https://docs.google.com/document/d/1--KckuCO9q3K9TdftpMhG3RrJpmvfdha/edit?usp=sharing&amp;ouid=114686238345698614306&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener">Résumé</a>
+      <a class="btn" href="https://www.linkedin.com/in/rithikreddy-dev/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/RithikTheddu1999" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+
+<section id="now" class="rv">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">01 / NOW</div>
+      <h2>What I'm working on</h2>
+      <p class="sec-sub">At Capco I own AI features end-to-end for financial services clients — React front-ends through FastAPI services to the retrieval layer and the pipelines that feed it.</p>
+    </div>
+    <div class="now-grid">
+      <div class="now-card">
+        <h3>RAG in production</h3>
+        <p>Snowflake and DealCloud sources normalized and chunked to 80–200 words with metadata, retrieved through Amazon Kendra, generated with GPT-4.1 / GPT-5 via OpenAI and Bedrock. Low-latency streaming, with PII scrubbing and prompt-injection defenses in the request path.</p>
+      </div>
+      <div class="now-card">
+        <h3>The data underneath</h3>
+        <p>PySpark transforms on Databricks and AWS Glue, curated datasets persisted to S3 and DynamoDB, analytics in SQL. Server-driven PDF exports and reporting views in Flask and Django.</p>
+      </div>
+      <div class="now-card">
+        <h3>The infrastructure around it</h3>
+        <p>Terraform-managed AWS across EC2, ECS, EKS, and Lambda with Step Functions. Secured with VPC, IAM, and ELB; monitored on CloudWatch against defined latency and cost SLOs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work" class="rv">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">02 / WORK</div>
+      <h2>Selected projects</h2>
+      <p class="sec-sub">Five of eighteen repositories — chosen for architectural depth rather than volume.</p>
+    </div>
+    <div class="proj">
+
+      <article class="card">
+        <div class="card-top">
+          <h3><a href="https://github.com/RithikTheddu1999/commitlens-ai" target="_blank" rel="noopener">CommitLens AI</a></h3>
+          <span class="flag">Flagship</span>
+        </div>
+        <p class="what">Extracts measurable executive commitments from earnings calls, investor letters, and press releases into a cited, auditable ledger with a reliability score per commitment.</p>
+        <p class="why">Six sequential agents — intake, extraction, evidence research, verification, financial risk, governance — coordinated in plain Python with <b>no agent framework</b>. The scoring model is deterministic by design: the language model reads language, and Python owns every number, date, and status transition. That separation is the only way this ships in a regulated environment, because every score is reproducible and every claim traces to a source.</p>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Next.js</span><span class="tag">LLM agents</span>
+          <span class="links"><a href="https://github.com/RithikTheddu1999/commitlens-ai" target="_blank" rel="noopener">Source →</a></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <h3><a href="https://github.com/RithikTheddu1999/news-automater" target="_blank" rel="noopener">News Automater</a></h3>
+        </div>
+        <p class="what">Autonomous pipeline: discovers news every 30 minutes, generates grounded articles with AI imagery, and pushes them through WordPress and LinkedIn adapters with no manual approval step.</p>
+        <p class="why">A <b>zero-token local pre-gate</b> filters on newness, corroboration, and relevance before any paid API call is made, and syndicated wire duplicates collapse via union-find so a single story reprinted twelve times never masquerades as twelve independent sources. Hard spend ceilings enforced pre-call, a grounding audit on every draft, and an offline fixture mode for deterministic tests. Publishing adapters run mocked end-to-end; real credentials swap in at the adapter boundary.</p>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Docker</span><span class="tag">GDELT</span><span class="tag">Groq</span>
+          <span class="links"><a href="https://github.com/RithikTheddu1999/news-automater" target="_blank" rel="noopener">Source →</a></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <h3><a href="https://github.com/RithikTheddu1999/Smart-Voting-System" target="_blank" rel="noopener">Smart Voting System</a></h3>
+        </div>
+        <p class="what">Three-factor voter authentication: election ID verification, then OTP, then face recognition.</p>
+        <p class="why">Local Binary Pattern face recognition over Haar cascade detection, trained per-voter at registration. Layered authentication where <b>each factor fails closed</b> — a design constraint that matters far more than the model accuracy in any system where the cost of a false accept is a fraudulent vote.</p>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">Computer vision</span>
+          <span class="links"><a href="https://github.com/RithikTheddu1999/Smart-Voting-System" target="_blank" rel="noopener">Source →</a></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <h3><a href="https://github.com/RithikTheddu1999/StudyBuddy" target="_blank" rel="noopener">StudyBuddy</a></h3>
+        </div>
+        <p class="what">Topic-based study rooms with real-time discussion — a focused take on Discord for study groups.</p>
+        <p class="why">Full Django application with a JSON API endpoint and role-scoped room access, covering the full path from model layer to rendered UI.</p>
+        <div class="tags">
+          <span class="tag">Django</span><span class="tag">Python</span><span class="tag">SQLite</span>
+          <span class="links">
+            <a href="https://youtu.be/3i34TAig4Eg" target="_blank" rel="noopener">Demo ▸</a>
+            <a href="https://github.com/RithikTheddu1999/StudyBuddy" target="_blank" rel="noopener">Source →</a>
+          </span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <h3><a href="https://github.com/RithikTheddu1999/masking-tool" target="_blank" rel="noopener">Masking Tool</a></h3>
+        </div>
+        <p class="what">Config-driven PII masking for Excel datasets, with full rollback.</p>
+        <p class="why">Masking is <b>reversible</b>: a run-keyed data dictionary with per-run backups lets you walk any dataset back to a prior state. It's the part most masking tools skip, and the part compliance actually asks about.</p>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">pandas</span><span class="tag">Data privacy</span>
+          <span class="links"><a href="https://github.com/RithikTheddu1999/masking-tool" target="_blank" rel="noopener">Source →</a></span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="rv">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">03 / EXPERIENCE</div>
+      <h2>Where I've worked</h2>
+    </div>
+    <div class="xp">
+
+      <div class="job current">
+        <div class="job-head">
+          <h3>AI Engineer, <span class="co">Capco</span></h3>
+          <span class="when">Jun 2025 — Present</span>
+        </div>
+        <p>Build AI web applications in React backed by FastAPI services with streaming responses and server-driven PDF exports. Integrate Snowflake and DealCloud data, run PySpark transforms on Databricks and Glue, and implement RAG over Kendra with PII scrubbing and prompt-injection defenses. Operate the AWS estate through Terraform against defined reliability, latency, and cost SLOs.</p>
+        <div class="stack">React · FastAPI · Snowflake · PySpark · Databricks · RAG · Bedrock · Kendra · Terraform · AWS · Azure</div>
+      </div>
+
+      <div class="job">
+        <div class="job-head">
+          <h3>Software Developer, <span class="co">State Street</span></h3>
+          <span class="when">Apr 2024 — Jun 2025</span>
+        </div>
+        <p>Built and optimized ETL pipelines in Python and PySpark on Databricks, orchestrated by Airflow, loading financial data into Redshift. Analyzed portfolios and benchmarks in Python and R, and implemented Java services to parse third-party reports into XML with auditable logging.</p>
+        <div class="stack">Python · PySpark · Airflow · Redshift · Databricks · R · Java · AWS S3</div>
+      </div>
+
+      <div class="job">
+        <div class="job-head">
+          <h3>Software Developer, <span class="co">Caliber IT Solutions</span></h3>
+          <span class="when">Jul 2023 — Apr 2024</span>
+        </div>
+        <p>Developed enterprise applications on Java EE, Spring Framework, and Spring Boot, and automated large-dataset processing with Python.</p>
+        <div class="stack">Java · J2EE · Spring Boot · JavaScript · Python</div>
+      </div>
+
+      <div class="job">
+        <div class="job-head">
+          <h3>Research Assistant, <span class="co">George Mason University</span></h3>
+          <span class="when">Dec 2022 — May 2023</span>
+        </div>
+        <p>Analyzed data across Virginia public universities, applied NLP to open-ended survey text, and presented findings through Google Analytics and Looker Studio.</p>
+        <div class="stack">Python · NLP · Google Analytics · Looker Studio</div>
+      </div>
+
+      <div class="job">
+        <div class="job-head">
+          <h3>.NET Full Stack Developer, <span class="co">Cognizant</span></h3>
+          <span class="when">Jan 2021 — Nov 2021</span>
+        </div>
+        <p>Built a payroll system in ASP.NET MVC with Entity Framework and PostgreSQL, automating salary, allowance, and tax calculation. Developed an insurance-claims microservice in Angular and Node.js deployed to Azure via CI/CD with role-based access and NUnit coverage.</p>
+        <div class="stack">Angular · Node.js · C# · ASP.NET MVC · PostgreSQL · Azure · NUnit</div>
+      </div>
+
+      <div class="job">
+        <div class="job-head">
+          <h3>Web Application Developer, <span class="co">Indent</span></h3>
+          <span class="when">Jul 2020 — Dec 2020</span>
+        </div>
+        <p>Built a React/Redux single-page application with REST APIs and CI/CD, enabling secure role-based collaboration for 100+ dentists.</p>
+        <div class="stack">React · Redux · REST · PHP · CI/CD · Azure</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="rv">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">04 / SKILLS</div>
+      <h2>Technical focus</h2>
+    </div>
+    <div class="sk">
+      <div class="sk-g"><h3>Languages</h3><p>Python, PySpark, SQL, Java, C#, JavaScript, R</p></div>
+      <div class="sk-g"><h3>AI &amp; Retrieval</h3><p>RAG, GPT-4.1 / GPT-5, Amazon Bedrock, Kendra, SageMaker, Rekognition, Lex, few-shot prompting, response streaming</p></div>
+      <div class="sk-g"><h3>Data &amp; Orchestration</h3><p>Snowflake, Redshift, Databricks, Airflow, AWS Glue, Azure Data Factory, PostgreSQL, DynamoDB, Cosmos DB, S3</p></div>
+      <div class="sk-g"><h3>Backend</h3><p>FastAPI, Django, Flask, Spring Boot, Node.js, ASP.NET, REST</p></div>
+      <div class="sk-g"><h3>Frontend</h3><p>React, Redux, Hooks, MUI, WebSockets, Angular, Bootstrap</p></div>
+      <div class="sk-g"><h3>Cloud &amp; DevOps</h3><p>AWS, Azure, Terraform, EC2, Lambda, Step Functions, ECS, EKS, VPC, IAM, CloudFormation, CI/CD, CloudWatch</p></div>
+    </div>
+
+    <div class="sec-head" style="margin-top:48px">
+      <div class="sec-num">05 / EDUCATION</div>
+      <h2>Education</h2>
+    </div>
+    <div class="edu">
+      <div class="edu-c">
+        <h3>MS, Computer Science</h3>
+        <div class="school">George Mason University</div>
+        <div class="det">GPA 3.70 · Jan 2022 — May 2023</div>
+      </div>
+      <div class="edu-c">
+        <h3>BE, Computer Science &amp; Engineering</h3>
+        <div class="school">Osmania University</div>
+        <div class="det">GPA 3.40 · Aug 2017 — Jul 2021</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact rv">
+  <div class="wrap">
+    <div class="sec-num">06 / CONTACT</div>
+    <h2>Let's talk</h2>
+    <p>I'm open to AI/ML engineering roles. If you're building something where correctness has to be provable, I'd like to hear about it.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="mailto:rithiksunny1999@gmail.com">rithiksunny1999@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/rithikreddy-dev/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/RithikTheddu1999" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://www.hackerrank.com/profile/rithiksunny1999" target="_blank" rel="noopener">HackerRank</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;width:100%">
+    <span>© 2026 Rithik Theddu</span>
+    <span>Maitland, FL · <a href="mailto:rithiksunny1999@gmail.com">rithiksunny1999@gmail.com</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('theme');
+  var stored=null;
+  try{stored=window.localStorage&&localStorage.getItem('theme')}catch(e){}
+  var start=stored||(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
+  root.setAttribute('data-theme',start);
+  btn.addEventListener('click',function(){
+    var next=root.getAttribute('data-theme')==='light'?'dark':'light';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem('theme',next)}catch(e){}
+  });
+
+  var els=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){en.target.classList.add('in'); io.unobserve(en.target);} });
+    },{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(el){io.observe(el)});
+  } else {
+    els.forEach(function(el){el.classList.add('in')});
+  }
+})();
+</script>
+</body>
+</html>
